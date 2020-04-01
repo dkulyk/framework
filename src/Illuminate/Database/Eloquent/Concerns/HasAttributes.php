@@ -1074,10 +1074,10 @@ trait HasAttributes
         }
 
         if (is_subclass_of($castType, Castable::class)) {
-            $castType = $castType::castUsing();
+            $castType = $castType::castUsing($arguments);
         }
 
-        return new $castType(...$arguments);
+        return is_object($castType) ? $castType : new $castType(...$arguments);
     }
 
     /**
